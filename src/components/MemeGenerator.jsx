@@ -7,7 +7,7 @@ const MemeGenerator = () => {
     textTwo: ""
   });
   const [randomImage, setRandomImage] = useState(
-    "https://i.imgflip.com/30b1gx.jpg"
+    ""
   );
   const [allMemes, setAllMemes] = useState([]);
 
@@ -16,7 +16,8 @@ const MemeGenerator = () => {
             const { data } = await axios.get(
           "https://api.imgflip.com/get_memes"
          );
-        setAllMemes(data);        
+        setAllMemes(data.data.memes); 
+        setRandomImage(data.data.memes[0].url)       
         console.log(data);
         } catch (error) {
         setError(error, "error");
